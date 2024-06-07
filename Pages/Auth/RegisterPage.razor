@@ -1,0 +1,52 @@
+﻿@page "/register"
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="d-flex align-center" Style="height: 100vh; width: 100vh;">
+
+    <EditForm Model="@model" OnValidSubmit=HandleValidSubmit style="width: 100%; padding: 8px;">
+        <DataAnnotationsValidator />
+        <MudGrid>
+            <MudItem xs="12" sm="12">
+                <MudCard>
+                    <MudCardContent>
+                        <MudText Typo="Typo.h4" GutterBottom="true">Cadastrar</MudText>
+                        <MudText>
+                            Já possui uma conta? <MudLink Href="/login">Entrar</MudLink>
+                        </MudText>
+
+                        <MudTextField Label="Usuário"
+                                      Class="my-6"
+                                      Variant="Variant.Outlined"
+                                      HelperText="Max. 20 caracteres"
+                                      @bind-Value="model.Username"
+                                      For="@(() => model.Username)" />
+
+                        <MudTextField Label="Senha"
+                                      Class="my-6"
+                                      Variant="Variant.Outlined"
+                                      HelperText="Escolha uma senha forte"
+                                      @bind-Value="model.Password"
+                                      For="@(() => model.Password)"
+                                      InputType="InputType.Password" />
+
+                        <MudTextField Label="Email"
+                                      Class="my-6"
+                                      Variant="Variant.Outlined"
+                                      @bind-Value="model.Email"
+                                      For="@(() => model.Email)" />
+
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   Size="Size.Large"
+                                   ButtonType="ButtonType.Submit"
+                                   FullWidth="true"
+                                   Class="ml-auto">
+                            Cadastrar
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+</MudContainer>

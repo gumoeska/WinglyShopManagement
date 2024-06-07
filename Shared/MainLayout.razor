@@ -1,0 +1,23 @@
+﻿@using WinglyShopAdmin.App.Components.Shared
+@inherits LayoutComponentBase
+
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    @if (AuthenticationService.User != null)
+    {
+        <NavMenu />
+
+        <SideMenu @bind-CanMiniSideMenuDrawer="_canMiniSideMenuDrawer"
+                  @bind-SideMenuDrawerOpen="_sideMenuDrawerOpen" />
+    }
+
+    <MudMainContent>
+        <MudContainer Class="mb-16 mt-4">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>

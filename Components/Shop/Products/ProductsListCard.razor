@@ -1,0 +1,53 @@
+﻿@using WinglyShopAdmin.App.Models.Shop.Products
+<MudPaper Outlined=true>
+    <MudCard>
+        <MudCardHeader>
+            <CardHeaderAvatar>
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h5">Produtos</MudText>
+                <MudText Typo="Typo.body2">Consulta de Produtos</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudDivider />
+        <MudCardContent>
+            @if (ProductsList.IsNullOrEmpty())
+            {
+                <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+            }
+
+            <MudPaper Outlined=true>
+                <MudTable T="ProductModel"
+                          Items="@ProductsList"
+                          @ref="mudTable"
+                          Hover="true"
+                          Elevation="0"
+                          Breakpoint="Breakpoint.Sm"
+                          RowClass="cursor-pointer"
+                          OnRowClick="RowClickEvent">
+                    <HeaderContent>
+                        <MudTh>Código</MudTh>
+                        <MudTh>Descrição</MudTh>
+                        <MudTh>Preço</MudTh>
+                        <MudTh>Possui Estoque</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="Código">@context.Code</MudTd>
+                        <MudTd DataLabel="Descrição">@context.Description</MudTd>
+                        <MudTd DataLabel="Preço">@context.Price</MudTd>
+                        <MudTd DataLabel="Possui Estoque">@context.HasStockString()</MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudPaper>
+        </MudCardContent>
+        <MudCardActions>
+            <MudGrid Justify="Justify.FlexEnd" Class="px-3 py-1">
+                <MudItem>
+                    <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Primary" OnClick=NewProductNavigate>
+                        Novo
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </MudCardActions>
+    </MudCard>
+</MudPaper>

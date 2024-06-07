@@ -1,0 +1,46 @@
+﻿@page "/login"
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="d-flex align-center" Style="height: 100vh; width: 100vh;">
+
+    <EditForm Model="@model" OnValidSubmit=HandleValidSubmit style="width: 100%;">
+        <DataAnnotationsValidator />
+        <MudGrid>
+            <MudItem xs="12" sm="12">
+                <MudCard Elevation="4" Style="padding: 8px;">
+                    <MudCardContent>
+                        <MudText Typo="Typo.h4" GutterBottom="true">Entrar</MudText>
+                        <MudText>
+                            Não tem uma conta? <MudLink Href="/register">Registre-se</MudLink>
+                        </MudText>
+
+                        <MudTextField Label="Usuário"
+                                      Class="my-6"
+                                      Variant="Variant.Outlined"
+                                      HelperText="Max. 8 characters"
+                                      @bind-Value="model.Username"
+                                      For="@(() => model.Username)" />
+
+                        <MudTextField Label="Senha"
+                                      Class="my-6"
+                                      Variant="Variant.Outlined"
+                                      HelperText="Choose a strong password"
+                                      @bind-Value="model.Password"
+                                      For="@(() => model.Password)"
+                                      InputType="InputType.Password" />
+
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   Size="Size.Large"
+                                   ButtonType="ButtonType.Submit"
+                                   FullWidth="true"
+                                   Class="ml-auto">
+                            Entrar
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+</MudContainer>

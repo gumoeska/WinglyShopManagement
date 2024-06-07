@@ -1,0 +1,107 @@
+﻿@using WinglyShopAdmin.App.Models.Shop.Categories
+@using WinglyShopAdmin.App.Models.Shop.Products
+<EditForm Model="@_model" OnValidSubmit=HandleValidSubmit style="width: 100%;">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12" sm="12">
+            <MudPaper Outlined=true>
+                <MudCard Style="padding: 8px;">
+                    <MudCardContent>
+                        <MudText Typo="Typo.h4" GutterBottom="true">Novo Produto</MudText>
+                        <MudText>
+                            Cadastre um novo Produto
+                        </MudText>
+                        <MudDivider />
+                        <MudGrid>
+                            <MudItem md="2" sm="2" xs="2">
+                                <MudTextField Label="Código"
+                                              Class="my-6"
+                                              Variant="Variant.Outlined"
+                                              Margin="Margin.Dense"
+                                              HelperText="Ex. 00001"
+                                              OnBlur="@(() => OnDataProductChanged(_model))"
+                                              @bind-Value="_model.Code"
+                                              For="@(() => _model.Code)" />
+                            </MudItem>
+                            <MudItem md="10" sm="10" xs="10">
+                                <MudTextField Label="Descrição"
+                                              Class="my-6"
+                                              Variant="Variant.Outlined"
+                                              Margin="Margin.Dense"
+                                              HelperText="Max. 100 characters"
+                                              OnBlur="@(() => OnDataProductChanged(_model))"
+                                              @bind-Value="_model.Description"
+                                              For="@(() => _model.Description)" />
+                            </MudItem>
+
+                            <MudItem md="4" sm="4" xs="4">
+                                <MudTextField @bind-Value="_model.Price"
+                                              For="@(() => _model.Price)"
+                                              OnBlur="@(() => OnDataProductChanged(_model))"
+                                              Label="Preço"
+                                              Variant="Variant.Outlined"
+                                              Margin="Margin.Dense"
+                                              Adornment="Adornment.Start"
+                                              AdornmentIcon="@Icons.Material.Filled.AttachMoney" />
+                            </MudItem>
+                            <MudItem md="8" sm="8" xs="8">
+                                <!-- Incluir Select das Categorias -->
+                                <MudSelect Margin="Margin.Dense" T="CategoryModel" Label="Categoria" Variant="Variant.Outlined" ValueChanged=OnValueChanged>
+                                    @foreach (var category in CategoryList)
+                                    {
+                                        <MudSelectItem T="CategoryModel" Value="category">@category.Description</MudSelectItem>
+                                    }
+                                </MudSelect>
+                            </MudItem>
+
+                            <MudItem md="4" sm="4" xs="4">
+                                <MudCheckBox Label="Possui estoque"
+                                             onblur="@(() => OnDataProductChanged(_model))"
+                                             @bind-Value="_model.HasStock"
+                                             For="@(() => _model.HasStock)" />
+                            </MudItem>
+                        </MudGrid>
+                    </MudCardContent>
+                    <MudDivider />
+                    <MudCardActions>
+                        <MudGrid Justify="Justify.FlexEnd" Class="px-4 py-2">
+                            <MudItem>
+                                <MudGrid Spacing="2">
+                                    @if (_loading)
+                                    {
+                                        <MudItem>
+                                            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.KeyboardReturn" Color="Color.Error" Disabled=true>
+                                                Cancelar
+                                            </MudButton>
+                                        </MudItem>
+                                        <MudItem>
+                                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled=true>
+                                                <div class="spinner-border spinner-border-sm"> </div>
+                                                Salvar
+                                            </MudButton>
+                                        </MudItem>
+                                    }
+                                    else
+                                    {
+                                        <MudItem>
+                                            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.KeyboardReturn" Color="Color.Error">
+                                                Cancelar
+                                            </MudButton>
+                                        </MudItem>
+
+                                        <MudItem>
+                                            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Primary" ButtonType="ButtonType.Submit">
+                                                Salvar
+                                            </MudButton>
+                                        </MudItem>
+                                    }
+
+                                </MudGrid>
+                            </MudItem>
+                        </MudGrid>
+                    </MudCardActions>
+                </MudCard>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</EditForm>

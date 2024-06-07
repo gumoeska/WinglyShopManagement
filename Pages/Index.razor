@@ -1,0 +1,73 @@
+﻿@page "/"
+@using WinglyShopAdmin.App.Common.Constants
+@attribute [Authorize]
+
+@* <div class="card mt-4">
+    <h4 class="card-header">You're logged in with Blazor & Basic HTTP Authentication!!</h4>
+    <div class="card-body">
+        <h6>Users from secure api end point</h6>
+
+        @if(_loading)
+        {
+            <div class="spinner-border spinner-border-sm"></div>
+        }
+        else
+        {
+            <a>Seja bem vindo, @_userData.Username</a>
+        }
+
+        @if (_loading)
+        {
+            <div class="spinner-border spinner-border-sm"></div>
+        }
+        @if (users != null)
+        {
+            <ul>
+                @foreach (var user in users)
+                {
+                    <li>@user.Name</li>
+                }
+            </ul>
+        }
+    </div>
+</div>
+ *@
+
+
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudGrid>
+        <MudItem md="12"
+                 sm="12"
+                 xs="12">
+            <div style="height: 120px;"></div>
+        </MudItem>
+
+        <MudItem md="12"
+                 sm="12"
+                 xs="12">
+            <MudPaper Class="d-flex flex-column justify-space-between pa-4"
+                      Elevation="0"
+                      Style="height: 220px;">
+                <div class="align-center d-flex flex-column justify-center">
+                    <MudIcon Class="mb-2"
+                             Color="Color.Primary"
+                             Icon="@GlobalConstants._winglyShopLogo"
+                             Style="font-size: 70px" />
+
+                    @if (_loading)
+                    {
+                        <div class="spinner-border spinner-border-sm"></div>
+                    }
+                    else
+                    {
+                        <MudText Class="my-1"
+                                 Typo="Typo.h5">
+                            Seja bem vindo,
+                            @_userData?.Username.
+                        </MudText>
+                    }
+                </div>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudContainer>

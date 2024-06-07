@@ -1,0 +1,20 @@
+﻿@inject NavigationManager NavigationManager
+
+@using WinglyShopAdmin.App.Components.Shared
+@using WinglyShopAdmin.App.Shared
+@using Microsoft.AspNetCore.Components.Routing
+@using WinglyShopAdmin.App.Helpers
+
+﻿<LoadingScreen>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AppRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        </Found>
+        <NotFound>
+            @{
+                // redirect to home page if not found
+                NavigationManager.NavigateTo("");
+            }
+        </NotFound>
+    </Router>
+</LoadingScreen>
