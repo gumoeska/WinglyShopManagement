@@ -9,7 +9,7 @@ using WinglyShopAdmin.App.Services.Shop;
 
 namespace WinglyShopAdmin.App.Components.Shop.Products;
 
-public partial class NewProductCard
+public partial class EditProductCard
 {
     [Inject] public NavigationManager NavigationManager { get; set; }
     [Inject] private IProductService ProductService { get; set; }
@@ -17,6 +17,7 @@ public partial class NewProductCard
     [Inject] private ISnackbar _snackbar { get; set; }
 
     [Parameter] public EventCallback<NewProductModel> DataProductChanged { get; set; }
+    [Parameter] public NewProductModel? InitialProductData { get; set; }
 
     private NewProductModel _model = new();
 
@@ -30,6 +31,12 @@ public partial class NewProductCard
 
     protected override async Task OnInitializedAsync()
     {
+        // Setting the initial product data
+        _model = InitialProductData;
+        StateHasChanged();
+
+        //await OnDataProductChanged(_model);
+
         CategoryList = await CategoryService.GetAllCategories();
     }
 
@@ -43,9 +50,9 @@ public partial class NewProductCard
         _loading = true;
         try
         {
-            await ProductService.CreateNewProduct(_model);
+            await ProductService.EditProduct(_model);
 
-            _snackbar.Add("Produto criado com sucesso!", Severity.Success);
+            _snackbar.Add("Produto alterado com sucesso!", Severity.Success);
 
             NavigationManager.NavigateTo("/loja/produtos");
         }
@@ -68,15 +75,20 @@ public partial class NewProductCard
         NavigationManager.NavigateTo("/loja/produtos");
     }
 
-    private void OnValueChanged(CategoryModel value)
+    private async Task OnValueChanged(CategoryModel value)
     {
         if (value != null)
         {
             _model.IdCategory = value.Id;
+            _model.CategoryDescription = value.Description;
+
         }
         else
         {
             _model.IdCategory = 0;
+            _model.CategoryDescription = string.Empty;
         }
+
+        await OnDataProductChanged(_model);
     }
 }

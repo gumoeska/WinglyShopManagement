@@ -12,6 +12,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WinglyShopAdmin.App.Abstractions.Services;
 using System.Text.Json.Serialization;
+using static MudBlazor.Colors;
 
 namespace WinglyShopAdmin.App.Services;
 
@@ -26,8 +27,8 @@ public class HttpService : IHttpService
         HttpClient httpClient,
         NavigationManager navigationManager,
         ILocalStorageService localStorageService,
-        IConfiguration configuration
-    ) {
+        IConfiguration configuration) 
+    {
         _httpClient = httpClient;
         _navigationManager = navigationManager;
         _localStorageService = localStorageService;
@@ -44,6 +45,12 @@ public class HttpService : IHttpService
     {
         var request = new HttpRequestMessage(HttpMethod.Post, $"{_httpClient.BaseAddress}{uri}");
         request.Content = new StringContent(JsonSerializer.Serialize(value), Encoding.UTF8, "application/json");
+        return await SendRequest<T>(request);
+    }
+
+    public async Task<T> Delete<T>(string uri)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Delete, $"{_httpClient.BaseAddress}{uri}");
         return await SendRequest<T>(request);
     }
 

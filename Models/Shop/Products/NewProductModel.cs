@@ -4,6 +4,8 @@ namespace WinglyShopAdmin.App.Models.Shop.Products;
 
 public class NewProductModel
 {
+    public int Id { get; set; }
+
     [Required]
     public string Code { get; set; }
 
@@ -18,7 +20,9 @@ public class NewProductModel
     public bool IsActive { get; set; }
 
     [Required]
-    public int CategoryId { get; set; }
+    public int IdCategory { get; set; }
+
+    public string? CategoryDescription { get; set; }
 
     public string HasStockString() => HasStock ? "Sim" : "Não";
 
