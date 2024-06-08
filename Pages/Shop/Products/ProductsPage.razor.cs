@@ -51,6 +51,7 @@ public partial class ProductsPage
             await ProductService.DeleteProduct(product.Id);
             await LoadProducts();
 
+            //
             _snackbar.Add("Produto deletado com sucesso!", Severity.Success);
             SelectedProduct = null;
             StateHasChanged();
