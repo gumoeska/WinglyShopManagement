@@ -64,8 +64,8 @@
                         </MudCardContent>
                         <MudDivider />
                         <MudCardActions>
-                            <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" />
-                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Default" />
+                            <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="@(() => EditProductNavigation(SelectedProduct))"/>
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Default" OnClick="@(() => DeleteProduct(SelectedProduct))"/>
                         </MudCardActions>
                     </MudCard>
                 </MudPaper>

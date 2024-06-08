@@ -1,0 +1,55 @@
+﻿@page "/loja/produtos/editar/{ProductId}"
+@using WinglyShopAdmin.App.Components.Shop.Products
+@using WinglyShopAdmin.App.Models.Shop.Products
+
+@attribute [Authorize]
+<MudGrid>
+    @if (ProductModel is not null)
+    {
+        <MudItem md="8" sm="8" xs="8">
+            <EditProductCard DataProductChanged="HandleProductDataChanged" InitialProductData=@ProductModel />
+        </MudItem>
+    }
+    else
+    {
+        <MudItem md="8" sm="8" xs="8">
+            <MudPaper Outlined=true>
+                <MudCard Style="padding: 8px;">
+                    <MudCardContent>
+                        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Height="250px" />
+                    </MudCardContent>
+                </MudCard>
+            </MudPaper>
+        </MudItem>
+    }
+
+    <MudItem md="4"
+             sm="4"
+             xs="4">
+        <MudPaper Outlined=true>
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudAvatar Rounded="true" Color="Color.Secondary">@ProductModel?.GetAvatarDescription()</MudAvatar>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5">@ProductModel?.GetDefaultCode() - @ProductModel?.GetDefaultDescription()</MudText>
+                        <MudText Typo="Typo.body2">@ProductModel?.CategoryDescription</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudDivider />
+                <MudCardContent>
+                    <MudGrid>
+                        <MudItem md="6" sm="6" xs="6">
+                            <MudText Typo="Typo.body2">Preço: R$ @ProductModel?.GetDefaultValue()</MudText>
+                        </MudItem>
+                        <MudItem md="6" sm="6" xs="6">
+                            <MudText Typo="Typo.body2">Estoque: @ProductModel?.HasStockString()</MudText>
+                        </MudItem>
+                    </MudGrid>
+                </MudCardContent>
+                <MudDivider />
+            </MudCard>
+        </MudPaper>
+    </MudItem>
+</MudGrid>

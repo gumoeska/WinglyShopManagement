@@ -18,8 +18,23 @@ public class ProductService : IProductService
         return await _httpService.Get<List<ProductModel>>("/Products");
     }
 
+    public async Task<NewProductModel> GetProductById(int id)
+    {
+        return await _httpService.Get<NewProductModel>($"/Products/{id}");
+    }
+
     public async Task<bool> CreateNewProduct(NewProductModel product)
     {
         return await _httpService.Post<bool>("/Products/Create", product);
+    }
+
+    public async Task<bool> EditProduct(NewProductModel product)
+    {
+        return await _httpService.Post<bool>("/Products/Update", product);
+    }
+
+    public async Task<bool> DeleteProduct(int id)
+    {
+        return await _httpService.Delete<bool>($"/Products/Delete/{id}");
     }
 }
