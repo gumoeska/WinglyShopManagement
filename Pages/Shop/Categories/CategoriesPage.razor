@@ -44,12 +44,62 @@
                         </MudCardHeader>
                         <MudDivider />
                         <MudCardContent>
-                            <!-- Inserir lista de produtos que possuem esta categoria cadastrada -->
+                            <MudGrid>
+                                @if (!ProductList.IsNullOrEmpty())
+                                {
+                                    <MudItem md="12" sm="12" xs="12">
+                                        <MudPaper Outlined=true>
+                                            <MudCard>
+                                                <MudCardHeader>
+                                                    <MudGrid Spacing="0">
+                                                        <MudItem md="12" sm="12" xs="12">
+                                                            <MudText Typo="Typo.body1" Style="font-weight: bold;">Lista de Produtos</MudText>
+                                                        </MudItem>
+                                                        <MudItem md="12" sm="12" xs="12">
+                                                            <MudText Typo="Typo.body2">Produtos com a categoria vinculada</MudText>
+                                                        </MudItem>
+                                                    </MudGrid>
+                                                </MudCardHeader>
+                                                <MudDivider />
+                                                <MudCardContent>
+                                                    <MudList Clickable="true" Dense=true>
+                                                        @foreach (var item in ProductList)
+                                                        {
+                                                            <MudListItem Text="@item.GetProductFullDescription()" />
+                                                        }
+                                                    </MudList>
+                                                </MudCardContent>
+                                            </MudCard>
+                                        </MudPaper>
+                                    </MudItem>
+                                }
+                                else
+                                {
+                                    <MudItem md="12" sm="12" xs="12">
+                                        <MudPaper Outlined=true>
+                                            <MudCard>
+                                                <MudCardContent>
+                                                    <MudText Typo="Typo.body2">Nenhum Produto vinculado a esta Categoria.</MudText>
+                                                </MudCardContent>
+                                            </MudCard>
+                                        </MudPaper>
+                                    </MudItem>
+                                }
+
+                            </MudGrid>
+
                         </MudCardContent>
                         <MudDivider />
                         <MudCardActions>
-                            <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="@(() => EditCategoryNavigation(SelectedCategory))" />
-                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Default" OnClick="@(() => DeleteCategory(SelectedCategory))" />
+                            <MudTooltip Text="Editar Categoria">
+                                <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="@(() => EditCategoryNavigation(SelectedCategory))" />
+                            </MudTooltip>
+                            <MudTooltip Text="Desvincular Produtos">
+                                <MudIconButton Icon="@Icons.Material.Filled.SyncDisabled" Color="Color.Default" OnClick="@(() => UnlinkCategoryProductsNavigation(SelectedCategory))" />
+                            </MudTooltip>
+                            <MudTooltip Text="Deletar Categoria">
+                                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Default" OnClick="@(() => DeleteCategory(SelectedCategory))" />
+                            </MudTooltip>
                         </MudCardActions>
                     </MudCard>
                 </MudPaper>

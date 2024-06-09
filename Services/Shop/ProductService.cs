@@ -23,6 +23,11 @@ public class ProductService : IProductService
         return await _httpService.Get<NewProductModel>($"/Products/{id}");
     }
 
+    public async Task<List<NewProductModel>> GetProductsByCategoryId(int id)
+    {
+        return await _httpService.Get<List<NewProductModel>>($"/Products/GetByCategory/{id}");
+    }
+
     public async Task<bool> CreateNewProduct(NewProductModel product)
     {
         return await _httpService.Post<bool>("/Products/Create", product);
@@ -31,6 +36,11 @@ public class ProductService : IProductService
     public async Task<bool> EditProduct(NewProductModel product)
     {
         return await _httpService.Post<bool>("/Products/Update", product);
+    }
+
+    public async Task<bool> UnlinkCategoryProducts(int id)
+    {
+        return await _httpService.Patch<bool>($"/Products/UnlinkCategory/{id}");
     }
 
     public async Task<bool> DeleteProduct(int id)

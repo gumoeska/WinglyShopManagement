@@ -19,8 +19,7 @@ public class NewProductModel
 
     public bool IsActive { get; set; }
 
-    [Required]
-    public int IdCategory { get; set; }
+    public int? IdCategory { get; set; }
 
     public string? CategoryDescription { get; set; }
 
@@ -33,4 +32,6 @@ public class NewProductModel
     public decimal GetDefaultValue() => (Price == decimal.Zero) ? decimal.Zero : Price;
 
     public char GetAvatarDescription() => (string.IsNullOrWhiteSpace(Description)) ? 'P' : Description[0];
+
+    public string GetProductFullDescription() => $"{ GetDefaultCode() } - { GetDefaultDescription() }"; // 001 - Produto sem nome
 }
