@@ -1,0 +1,59 @@
+﻿@page "/loja/categorias"
+@using WinglyShopAdmin.App.Components.Shop.Categories
+@using WinglyShopAdmin.App.Models.Shop.Products
+
+@attribute [Authorize]
+
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudGrid>
+        @if (SelectedCategory is null)
+        {
+            <MudItem md="12"
+                     sm="12"
+                     xs="12">
+                <CategoriesListCard CategoriesList="CategoriesList" SelectedCategoryChanged="HandleSelectedCategory" />
+            </MudItem>
+        }
+        else
+        {
+            <MudItem md="8"
+                     sm="8"
+                     xs="8">
+                <CategoriesListCard CategoriesList="CategoriesList" SelectedCategoryChanged="HandleSelectedCategory" />
+            </MudItem>
+        }
+
+        @if (SelectedCategory is not null)
+        {
+            <MudItem md="4"
+                     sm="4"
+                     xs="4">
+                <MudPaper Outlined=true>
+                    <MudCard>
+                        <MudCardHeader>
+                            <CardHeaderAvatar>
+                                <MudAvatar Rounded="true" Color="Color.Secondary">@SelectedCategory?.Description[0]</MudAvatar>
+                            </CardHeaderAvatar>
+                            <CardHeaderContent>
+                                <MudText Typo="Typo.h5">@SelectedCategory?.Description</MudText>
+                                <MudText Typo="Typo.body2">Categoria</MudText>
+                            </CardHeaderContent>
+                            <CardHeaderActions>
+                                <MudIconButton Icon="@Icons.Material.Filled.Close" Color="Color.Default" OnClick="CloseSelectedCategoryCard" />
+                            </CardHeaderActions>
+                        </MudCardHeader>
+                        <MudDivider />
+                        <MudCardContent>
+                            <!-- Inserir lista de produtos que possuem esta categoria cadastrada -->
+                        </MudCardContent>
+                        <MudDivider />
+                        <MudCardActions>
+                            <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="@(() => EditCategoryNavigation(SelectedCategory))" />
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Default" OnClick="@(() => DeleteCategory(SelectedCategory))" />
+                        </MudCardActions>
+                    </MudCard>
+                </MudPaper>
+            </MudItem>
+        }
+    </MudGrid>
+</MudContainer>
