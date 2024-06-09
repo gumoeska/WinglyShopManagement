@@ -27,7 +27,6 @@
   <ItemGroup>
     <Folder Include="Pages\Dashboard\CustomerProspecting\" />
     <Folder Include="Pages\Dashboard\Sales\" />
-    <Folder Include="Pages\Shop\Categories\" />
     <Folder Include="Pages\Users\Accounts\" />
     <Folder Include="Pages\Users\Roles\" />
   </ItemGroup>

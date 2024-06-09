@@ -8,5 +8,13 @@ public class CategoryModel
 
     public string? Description { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
+
+    public string IsActiveString() => IsActive ? "Sim" : "Não";
+
+    public string GetDefaultDescription() => (string.IsNullOrWhiteSpace(Description)) ? "Categoria sem nome" : Description;
+
+    public string GetDefaultCode() => (string.IsNullOrWhiteSpace(Code)) ? "001" : Code;
+
+    public char GetAvatarDescription() => (string.IsNullOrWhiteSpace(Description)) ? 'P' : Description[0];
 }

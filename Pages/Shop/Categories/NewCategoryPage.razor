@@ -1,0 +1,40 @@
+﻿@page "/loja/categorias/nova"
+@using WinglyShopAdmin.App.Components.Shop.Categories
+@using WinglyShopAdmin.App.Models.Shop.Categories
+
+@attribute [Authorize]
+<MudGrid>
+    <MudItem md="8" sm="8" xs="8">
+        <NewCategoryCard DataCategoryChanged="HandleCategoryDataChanged" />
+    </MudItem>
+
+    <MudItem md="4"
+             sm="4"
+             xs="4">
+        <MudPaper Outlined=true>
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudAvatar Rounded="true" Color="Color.Secondary">@CategoryModel?.GetAvatarDescription()</MudAvatar>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5">@CategoryModel?.GetDefaultCode() - @CategoryModel?.GetDefaultDescription()</MudText>
+                        <MudText Typo="Typo.body2">Categoria do Produto</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudDivider />
+                <MudCardContent>
+                    <MudGrid>
+                        @* <MudItem md="6" sm="6" xs="6">
+                            <MudText Typo="Typo.body2">Preço: R$ @CategoryModel?.GetDefaultValue()</MudText>
+                        </MudItem>
+                        <MudItem md="6" sm="6" xs="6">
+                            <MudText Typo="Typo.body2">Estoque: @CategoryModel?.HasStockString()</MudText>
+                        </MudItem> *@
+                    </MudGrid>
+                </MudCardContent>
+                <MudDivider />
+            </MudCard>
+        </MudPaper>
+    </MudItem>
+</MudGrid>

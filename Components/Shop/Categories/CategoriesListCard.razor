@@ -1,0 +1,51 @@
+﻿@using WinglyShopAdmin.App.Models.Shop.Categories
+<MudPaper Outlined=true>
+    <MudCard>
+        <MudCardHeader>
+            <CardHeaderAvatar>
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h5">Categorias</MudText>
+                <MudText Typo="Typo.body2">Consulta de Categorias</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudDivider />
+        <MudCardContent>
+            @if (CategoriesList.IsNullOrEmpty())
+            {
+                <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+            }
+
+            <MudPaper Outlined=true>
+                <MudTable T="CategoryModel"
+                          Items="@CategoriesList"
+                          @ref="mudTable"
+                          Hover="true"
+                          Elevation="0"
+                          Breakpoint="Breakpoint.Sm"
+                          RowClass="cursor-pointer"
+                          OnRowClick="RowClickEvent">
+                    <HeaderContent>
+                        <MudTh>Código</MudTh>
+                        <MudTh>Descrição</MudTh>
+                        <MudTh>Ativo</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="Código">@context.Code</MudTd>
+                        <MudTd DataLabel="Descrição">@context.Description</MudTd>
+                        <MudTd DataLabel="Ativo">@context.IsActiveString()</MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudPaper>
+        </MudCardContent>
+        <MudCardActions>
+            <MudGrid Justify="Justify.FlexEnd" Class="px-3 py-1">
+                <MudItem>
+                    <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Primary" OnClick=NewCategoryNavigate>
+                        Novo
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </MudCardActions>
+    </MudCard>
+</MudPaper>
