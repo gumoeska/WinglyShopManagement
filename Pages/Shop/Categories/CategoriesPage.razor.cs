@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using WinglyShopAdmin.App.Abstractions.Services.Shop;
+using WinglyShopAdmin.App.Extensions;
 using WinglyShopAdmin.App.Models.Shop.Categories;
 using WinglyShopAdmin.App.Models.Shop.Products;
+using WinglyShopAdmin.App.Services.Shop;
 
 namespace WinglyShopAdmin.App.Pages.Shop.Categories;
 
@@ -10,9 +12,11 @@ public partial class CategoriesPage
 {
     [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private ICategoryService CategoryService { get; set; }
+    [Inject] private IProductService ProductService { get; set; }
     [Inject] private ISnackbar _snackbar { get; set; }
 
-    private List<CategoryModel> CategoriesList { get; set; }
+    private List<CategoryModel> CategoriesList { get; set; } = new();
+    private List<NewProductModel> ProductList { get; set; } = new();
 
     public CategoryModel? SelectedCategory { get; set; }
 
@@ -30,19 +34,45 @@ public partial class CategoriesPage
     {
         _loading = true;
 
-        CategoriesList = await CategoryService.GetAllCategories();
+        var CategoriesListRequest = await CategoryService.GetAllCategories();
+
+        if (!CategoriesListRequest.IsNullOrEmpty())
+        {
+            CategoriesList = CategoriesListRequest;
+        }
 
         _loading = false;
     }
 
-    private void HandleSelectedCategory(CategoryModel category)
+    private async Task HandleSelectedCategory(CategoryModel category)
     {
+        // Buscar lista de Produtos desta categoria
+        ProductList = await ProductService.GetProductsByCategoryId(category.Id);
+
         SelectedCategory = category;
     }
 
     private void EditCategoryNavigation(CategoryModel category)
     {
         NavigationManager.NavigateTo($"/loja/categorias/editar/{category.Id}");
+    }
+
+    private async Task UnlinkCategoryProductsNavigation(CategoryModel category)
+    {
+        try
+        {
+            await ProductService.UnlinkCategoryProducts(category.Id);
+            await LoadCategories();
+
+            _snackbar.Add("Produtos desvinculados da Categoria com sucesso!", Severity.Success);
+            SelectedCategory = null;
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            _snackbar.Add(ex.Message, Severity.Error);
+            StateHasChanged();
+        }
     }
 
     private async Task DeleteCategory(CategoryModel category)

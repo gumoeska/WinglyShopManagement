@@ -10,7 +10,7 @@ public sealed class ProductModel
     public bool HasStock { get; set; }
 
     // Product category data
-    public int IdCategory { get; set; }
+    public int? IdCategory { get; set; }
     public string? CategoryDescription { get; set; }
 
     // Methods

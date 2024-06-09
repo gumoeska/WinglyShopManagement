@@ -48,6 +48,26 @@ public class HttpService : IHttpService
         return await SendRequest<T>(request);
     }
 
+    public async Task<T> Put<T>(string uri, object value)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Put, $"{_httpClient.BaseAddress}{uri}");
+        request.Content = new StringContent(JsonSerializer.Serialize(value), Encoding.UTF8, "application/json");
+        return await SendRequest<T>(request);
+    }
+
+    public async Task<T> Patch<T>(string uri)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Patch, $"{_httpClient.BaseAddress}{uri}");
+        return await SendRequest<T>(request);
+    }
+
+    public async Task<T> Patch<T>(string uri, object value)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Patch, $"{_httpClient.BaseAddress}{uri}");
+        request.Content = new StringContent(JsonSerializer.Serialize(value), Encoding.UTF8, "application/json");
+        return await SendRequest<T>(request);
+    }
+
     public async Task<T> Delete<T>(string uri)
     {
         var request = new HttpRequestMessage(HttpMethod.Delete, $"{_httpClient.BaseAddress}{uri}");
