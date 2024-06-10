@@ -9,8 +9,8 @@ public partial class ProductsListCard
     [Inject] public NavigationManager NavigationManager { get; set; }
 
     [Parameter] public List<ProductModel> ProductsList { get; set; }
-
     [Parameter] public EventCallback<ProductModel> SelectedProductChanged { get; set; }
+    [Parameter] public bool LoadingParam { get; set; }
 
     private MudTable<ProductModel> mudTable;
 

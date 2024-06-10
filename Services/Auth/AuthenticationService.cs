@@ -6,7 +6,7 @@ using WinglyShopAdmin.App.Abstractions.Services;
 using WinglyShopAdmin.App.Models.Auth.Requests;
 using WinglyShop.Shared;
 
-namespace WinglyShopAdmin.App.Services;
+namespace WinglyShopAdmin.App.Services.Auth;
 
 public class AuthenticationService : IAuthenticationService
 {
@@ -20,7 +20,8 @@ public class AuthenticationService : IAuthenticationService
         IHttpService httpService,
         NavigationManager navigationManager,
         ILocalStorageService localStorageService
-    ) {
+    )
+    {
         _httpService = httpService;
         _navigationManager = navigationManager;
         _localStorageService = localStorageService;

@@ -61,7 +61,8 @@ public partial class NavMenu
         _loading = false;
     }
 
-    private void FazerNada()
+    private void DoNothing()
     {
+        // TODO: Dark Theme
     }
 }

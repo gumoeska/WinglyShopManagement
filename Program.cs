@@ -1,10 +1,12 @@
 using WinglyShopAdmin.App.Helpers;
-using WinglyShopAdmin.App.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using WinglyShopAdmin.App.Abstractions.Services;
 using WinglyShopAdmin.App.Abstractions.Services.Shop;
 using WinglyShopAdmin.App.Services.Shop;
+using WinglyShopAdmin.App.Services.Common;
+using WinglyShopAdmin.App.Services.Users;
+using WinglyShopAdmin.App.Services.Auth;
 
 namespace WinglyShopAdmin.App
 {

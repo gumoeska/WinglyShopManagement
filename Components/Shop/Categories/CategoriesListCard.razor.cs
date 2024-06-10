@@ -9,8 +9,8 @@ public partial class CategoriesListCard
     [Inject] public NavigationManager NavigationManager { get; set; }
 
     [Parameter] public List<CategoryModel>? CategoriesList { get; set; }
-
     [Parameter] public EventCallback<CategoryModel> SelectedCategoryChanged { get; set; }
+    [Parameter] public bool LoadingParam { get; set; }
 
     private MudTable<CategoryModel> mudTable;
 

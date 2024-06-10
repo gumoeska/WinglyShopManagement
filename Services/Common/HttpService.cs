@@ -14,7 +14,7 @@ using WinglyShopAdmin.App.Abstractions.Services;
 using System.Text.Json.Serialization;
 using static MudBlazor.Colors;
 
-namespace WinglyShopAdmin.App.Services;
+namespace WinglyShopAdmin.App.Services.Common;
 
 public class HttpService : IHttpService
 {
@@ -27,7 +27,7 @@ public class HttpService : IHttpService
         HttpClient httpClient,
         NavigationManager navigationManager,
         ILocalStorageService localStorageService,
-        IConfiguration configuration) 
+        IConfiguration configuration)
     {
         _httpClient = httpClient;
         _navigationManager = navigationManager;

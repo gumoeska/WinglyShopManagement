@@ -4,7 +4,7 @@ using WinglyShopAdmin.App.Abstractions.Services;
 using WinglyShopAdmin.App.Models.Profile;
 using WinglyShopAdmin.App.Models.Shop.Products;
 
-namespace WinglyShopAdmin.App.Pages.Shop.Products;
+namespace WinglyShopAdmin.App.Pages.Profile;
 
 public partial class ProfilePage
 {
@@ -16,16 +16,16 @@ public partial class ProfilePage
 
     private bool _loading;
 
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    await LoadAccountInformation();
-    //}
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAccountInformation();
+    }
 
     private async Task LoadAccountInformation()
     {
         _loading = true;
 
-        //UserFullAccountInformation = await UserService.GetUserFullAccountInformation();
+        UserFullAccountInformation = await UserService.GetUserFullAccountInformation();
 
         _loading = false;
     }

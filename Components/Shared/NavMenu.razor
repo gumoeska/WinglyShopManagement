@@ -17,7 +17,7 @@
     <MudSpacer />
 
     <MudTooltip Arrow="true"
-                Text="Buscar Nota Fiscal">
+                Text="Indisponível">
         <MudIconButton Class="mx-3"
                        Color="Color.Default"
                        Icon="@Icons.Material.Filled.Search"
@@ -25,11 +25,11 @@
     </MudTooltip>
 
     <MudTooltip Arrow="true"
-                Text="Trocar Tema">
+                Text="Indisponível">
         <MudIconButton Class="mx-3"
                        Color="Color.Default"
                        Icon="@Icons.Material.Filled.LightMode"
-                       @onclick="@(() => FazerNada())" />
+                       @onclick="@(() => DoNothing())" />
     </MudTooltip>
 
     <UserMenu UserInfo="_userData" />
