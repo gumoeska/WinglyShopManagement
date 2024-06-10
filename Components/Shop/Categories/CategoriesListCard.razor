@@ -11,32 +11,46 @@
         </MudCardHeader>
         <MudDivider />
         <MudCardContent>
-            @if (CategoriesList.IsNullOrEmpty())
+            @if (CategoriesList is null && LoadingParam is true)
             {
                 <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
             }
 
-            <MudPaper Outlined=true>
-                <MudTable T="CategoryModel"
-                          Items="@CategoriesList"
-                          @ref="mudTable"
-                          Hover="true"
-                          Elevation="0"
-                          Breakpoint="Breakpoint.Sm"
-                          RowClass="cursor-pointer"
-                          OnRowClick="RowClickEvent">
-                    <HeaderContent>
-                        <MudTh>Código</MudTh>
-                        <MudTh>Descrição</MudTh>
-                        <MudTh>Ativo</MudTh>
-                    </HeaderContent>
-                    <RowTemplate>
-                        <MudTd DataLabel="Código">@context.Code</MudTd>
-                        <MudTd DataLabel="Descrição">@context.Description</MudTd>
-                        <MudTd DataLabel="Ativo">@context.IsActiveString()</MudTd>
-                    </RowTemplate>
-                </MudTable>
-            </MudPaper>
+            @if (!CategoriesList.IsNullOrEmpty())
+            {
+
+                <MudPaper Outlined=true>
+                    <MudTable T="CategoryModel"
+                              Items="@CategoriesList"
+                              @ref="mudTable"
+                              Hover="true"
+                              Elevation="0"
+                              Breakpoint="Breakpoint.Sm"
+                              RowClass="cursor-pointer"
+                              OnRowClick="RowClickEvent">
+                        <HeaderContent>
+                            <MudTh>Código</MudTh>
+                            <MudTh>Descrição</MudTh>
+                            <MudTh>Ativo</MudTh>
+                        </HeaderContent>
+                        <RowTemplate>
+                            <MudTd DataLabel="Código">@context.Code</MudTd>
+                            <MudTd DataLabel="Descrição">@context.Description</MudTd>
+                            <MudTd DataLabel="Ativo">@context.IsActiveString()</MudTd>
+                        </RowTemplate>
+                    </MudTable>
+                </MudPaper>
+            }
+            else if (LoadingParam is false)
+            {
+                <MudPaper Outlined=true>
+                    <MudGrid Justify="Justify.Center">
+                        <MudItem>
+                            <MudText Typo="Typo.body2" Style="padding: 8px">Nenhuma Categoria encontrada.</MudText>
+                        </MudItem>
+                    </MudGrid>
+                </MudPaper>
+            }
         </MudCardContent>
         <MudCardActions>
             <MudGrid Justify="Justify.FlexEnd" Class="px-3 py-1">

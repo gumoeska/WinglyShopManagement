@@ -4,13 +4,6 @@
 
 @attribute [Authorize]
 
-@* <div class="card mt-4">
-    <h4 class="card-header">Pagina de Produtos</h4>
-    <div class="card-body">
-        <h6>Users from secure api end point</h6>
-    </div>
-</div> *@
-
 <MudContainer MaxWidth="MaxWidth.False">
     <MudGrid>
         <!-- Card - List - Products -->
@@ -19,7 +12,7 @@
             <MudItem md="12"
                      sm="12"
                      xs="12">
-                <ProductsListCard ProductsList="ProductsList" SelectedProductChanged="HandleSelectedProduct" />
+                <ProductsListCard ProductsList="ProductsList" SelectedProductChanged="HandleSelectedProduct" LoadingParam=_loading/>
             </MudItem>
         }
         else
@@ -27,7 +20,7 @@
             <MudItem md="8"
                      sm="8"
                      xs="8">
-                <ProductsListCard ProductsList="ProductsList" SelectedProductChanged="HandleSelectedProduct" />
+                <ProductsListCard ProductsList="ProductsList" SelectedProductChanged="HandleSelectedProduct" LoadingParam=_loading />
             </MudItem>
         }
 

@@ -1,0 +1,40 @@
+﻿@if (Model is null)
+{
+    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Height="250px" />
+}
+else
+{
+    <MudPaper Outlined=true>
+        <MudCard Style="padding: 8px;">
+            <MudCardHeader>
+                <MudText Typo="Typo.body1" Style="font-weight: bold">Informações da Conta</MudText>
+            </MudCardHeader>
+            <MudDivider />
+            <MudCardContent>
+                <MudGrid Spacing="1">
+                    <MudItem md="6" sm="6" xs="6">
+                        <MudTextField @bind-Value="Model.Login"
+                                      Label="Usuário"
+                                      Disabled=true
+                                      Variant="Variant.Outlined"
+                                      Margin="Margin.Dense" />
+                    </MudItem>
+                    <MudItem md="6" sm="6" xs="6">
+                        <MudTextField @bind-Value="Model.Password"
+                                      Label="Senha"
+                                      Disabled=true
+                                      Variant="Variant.Outlined"
+                                      Margin="Margin.Dense" />
+                    </MudItem>
+                    <MudItem md="12" sm="12" xs="12">
+                        <MudTextField @bind-Value="Model.Email"
+                                      Label="Email"
+                                      Disabled=true
+                                      Variant="Variant.Outlined"
+                                      Margin="Margin.Dense" />
+                    </MudItem>
+                </MudGrid>
+            </MudCardContent>
+        </MudCard>
+    </MudPaper>
+}

@@ -2,7 +2,7 @@ using WinglyShopAdmin.App.Abstractions.Services;
 using WinglyShopAdmin.App.Models.Profile;
 using WinglyShopAdmin.App.Models.UserData;
 
-namespace WinglyShopAdmin.App.Services;
+namespace WinglyShopAdmin.App.Services.Users;
 
 public class UserService : IUserService
 {
@@ -20,8 +20,7 @@ public class UserService : IUserService
 
     public async Task<UserFullAccountInformationModel> GetUserFullAccountInformation()
     {
-        return null;
-        //return await _httpService.Get<>("/");
+        return await _httpService.Get<UserFullAccountInformationModel>("/Users/full-profile");
     }
 
     public async Task<IEnumerable<UserDataModel>> GetAll()

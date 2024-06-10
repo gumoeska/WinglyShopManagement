@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WinglyShopAdmin.App.Abstractions.Services;
 
-namespace WinglyShopAdmin.App.Services;
+namespace WinglyShopAdmin.App.Services.Common;
 
 public class LocalStorageService : ILocalStorageService
 {
