@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace WinglyShopAdmin.App.Models.Shop.Products;
 
@@ -15,6 +16,8 @@ public class NewProductModel
     [Required]
     public decimal Price { get; set; }
 
+    public IFormFile? Image { get; set; }
+    
     public bool HasStock { get; set; }
 
     public bool IsActive { get; set; }
