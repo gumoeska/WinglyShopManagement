@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using WinglyShopAdmin.App.Abstractions.Services.Shop;
-using WinglyShopAdmin.App.Extensions;
+using WinglyShopAdmin.App.Helpers;
 using WinglyShopAdmin.App.Models.Shop.Categories;
 using WinglyShopAdmin.App.Models.Shop.Products;
 using WinglyShopAdmin.App.Services.Shop;
