@@ -7,6 +7,8 @@ using WinglyShopAdmin.App.Services.Shop;
 using WinglyShopAdmin.App.Services.Common;
 using WinglyShopAdmin.App.Services.Users;
 using WinglyShopAdmin.App.Services.Auth;
+using WinglyShopAdmin.App.Abstractions.Services.Profile;
+using WinglyShopAdmin.App.Services.Profile;
 
 namespace WinglyShopAdmin.App
 {
@@ -23,15 +25,12 @@ namespace WinglyShopAdmin.App
                 .AddScoped<IHttpService, HttpService>()
                 .AddScoped<ILocalStorageService, LocalStorageService>()
                 .AddScoped<IProductService, ProductService>()
-                .AddScoped<ICategoryService, CategoryService>();
+                .AddScoped<ICategoryService, CategoryService>()
+                .AddScoped<IProfileService, ProfileService>();
 
             // configure http client
             builder.Services.AddScoped(x => {
                 var apiUrl = new Uri(builder.Configuration["apiUrl"]);
-
-                // use fake backend if "fakeBackend" is "true" in appsettings.json
-                if (builder.Configuration["fakeBackend"] == "true")
-                    return new HttpClient(new FakeBackendHandler()) { BaseAddress = apiUrl };
 
                 return new HttpClient() { BaseAddress = apiUrl };
             });

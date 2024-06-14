@@ -8,8 +8,14 @@ else
     <MudPaper Outlined=true>
         <MudCard Style="padding: 8px;">
             <MudCardHeader>
-                <MudText Typo="Typo.body1" Style="font-weight: bold">Informações do Usuário</MudText>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.body1" Style="font-weight: bold">Informações do Usuário</MudText>
+                </CardHeaderContent>
+                <CardHeaderActions>
+                    <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick=EditUserProfileInformation />
+                </CardHeaderActions>
             </MudCardHeader>
+
             <MudDivider />
             <MudCardContent>
                 <MudGrid Spacing="1">

@@ -25,7 +25,7 @@ public partial class SideMenu
 
         new MenuSectionModel
         {
-            Title = "Loja",
+            Title = "Cadastro",
             SectionItems = new List<MenuSectionItemModel>
             {
                 // Produtos
@@ -33,7 +33,7 @@ public partial class SideMenu
                 {
                     Title = "Produtos",
                     Icon = Icons.Material.Filled.ShoppingCart,
-                    Href = "/loja/produtos"
+                    Href = "/cadastro/produtos"
                 },
 
                 // Categorias
@@ -41,7 +41,30 @@ public partial class SideMenu
                 {
                     Title = "Categorias",
                     Icon = Icons.Material.Filled.Category,
-                    Href = "/loja/categorias"
+                    Href = "/cadastro/categorias"
+                }
+            }
+        },
+
+        new MenuSectionModel
+        {
+            Title = "Loja",
+            SectionItems = new List<MenuSectionItemModel>
+            {
+                // Produtos
+                new()
+                {
+                    Title = "Pedidos",
+                    Icon = Icons.Material.Filled.Assignment,
+                    Href = "/loja/pedidos"
+                },
+
+                // Categorias
+                new()
+                {
+                    Title = "Entregas",
+                    Icon = Icons.Material.Filled.DeliveryDining,
+                    Href = "/loja/entregas"
                 }
             }
         },
