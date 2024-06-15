@@ -54,7 +54,7 @@ public partial class CategoriesPage
 
     private void EditCategoryNavigation(CategoryModel category)
     {
-        NavigationManager.NavigateTo($"/loja/categorias/editar/{category.Id}");
+        NavigationManager.NavigateTo($"/cadastro/categorias/editar/{category.Id}");
     }
 
     private async Task UnlinkCategoryProductsNavigation(CategoryModel category)

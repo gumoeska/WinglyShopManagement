@@ -41,7 +41,7 @@ public partial class ProductsPage
 
     private void EditProductNavigation(ProductModel product)
     {
-        NavigationManager.NavigateTo($"/loja/produtos/editar/{product.Id}");
+        NavigationManager.NavigateTo($"/cadastro/produtos/editar/{product.Id}");
     }
 
     private async Task DeleteProduct(ProductModel product)
